@@ -7,7 +7,7 @@ interface ButtonProps {
 export const HeaderContainer = styled.header`
   width: 100%;
   height: 6.5rem;
-
+  background: ${(props) => props.theme.white};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -49,15 +49,29 @@ export const ButtoCart = styled.button<ButtonProps>`
 
   transition: 0.6s;
 
+  span {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    top: -7px;
+    right: -7px;
+
+    font-size: 0.7rem;
+    text-align: center;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    border-radius: 50%;
+
+    background: ${(props) => props.theme['yellow-dark']};
+    color: ${(props) => props.theme.white};
+  }
+
   ${({ variant }) => css`
     background: ${(props) => props.theme[`${variant}-light`]};
     color: ${(props) => props.theme[`${variant}-dark`]};
   `}
-
-  :hover {
-    ${({ variant }) => css`
-      background: ${(props) => props.theme[`${variant}-dark`]};
-      color: ${(props) => props.theme[`${variant}-light`]};
-    `}
-  }
 `

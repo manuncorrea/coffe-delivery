@@ -30,7 +30,9 @@ export function Card({
     <CardContainer>
       <img src={photo} alt="" />
       <div className="category">
-        <p>{categories}</p>
+        {categories.map((categorie) => (
+          <p key={name.length * Math.random()}>{categorie}</p>
+        ))}
       </div>
       <h2>{name}</h2>
       <span className="text-card">{description}</span>

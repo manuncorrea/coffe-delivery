@@ -4,8 +4,8 @@ import { ButtoCart, ContainerButton, HeaderContainer } from './styles'
 
 export function Header() {
   return (
-    <HeaderContainer className="content">
-      <div>
+    <HeaderContainer>
+      <div className="content">
         <img src={logoCoffe} alt="" />
 
         <ContainerButton>
@@ -16,6 +16,7 @@ export function Header() {
 
           <ButtoCart variant="yellow">
             <ShoppingCart weight="fill" size={20} />
+            <span>1</span>
           </ButtoCart>
         </ContainerButton>
       </div>

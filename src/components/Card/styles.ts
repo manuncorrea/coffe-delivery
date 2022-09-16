@@ -21,21 +21,28 @@ export const CardContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0.25rem 0.5rem;
-
-    background: ${(props) => props.theme['yellow-light']};
-    border-radius: 100px;
+    padding: 0px;
+    gap: 4px;
 
     position: absolute;
-    width: 5.063rem;
-    height: 1.313rem;
-    left: calc(50% - 5.063rem / 2);
+    width: 140px;
+    height: 21px;
+    left: calc(50% - 140px / 2);
     top: 112px;
 
     p {
-      font-size: 0.625rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.55rem;
       font-weight: 700;
+      width: 5.063rem;
+      height: 1.313rem;
+      font-weight: 700;
+      border-radius: 100px;
       color: ${(props) => props.theme['yellow-dark']};
+      background: ${(props) => props.theme['yellow-light']};
       text-transform: uppercase;
       line-height: 130%;
     }
