@@ -1,9 +1,9 @@
-/* eslint-disable no-self-compare */
 import { produce } from 'immer'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { CoffeCardProps } from '../components/Card'
+
 export interface OrdersCartProps extends CoffeCardProps {
-  quantity: number
+  quantyCoffe: number
 }
 
 interface CoffeeCartContextProps {
@@ -13,13 +13,13 @@ interface CoffeeCartContextProps {
 interface CartProps {
   cartOrders: OrdersCartProps[]
   cartQuantity: number
-  totalPrice: number
+  cartOrdersTotal: number
   addCoffeeToCart: (coffee: OrdersCartProps) => void
   completeCurrentOrder: (
-    cartOrdersId: number,
+    cartOrderId: number,
     type: 'increase' | 'decrease',
   ) => void
-  removeCoffeeFromCart: (cartOrdersId: number) => void
+  removeCoffeeFromCart: (cartOrderId: number) => void
   cleanCart: () => void
 }
 
@@ -39,20 +39,20 @@ export function CoffeeCartContextProvider({
 
   const cartQuantity = cartOrders.length
 
-  const totalPrice = cartOrders.reduce((total, cartOrder) => {
-    return total + cartOrder.price * cartOrder.quantity
+  const cartOrdersTotal = cartOrders.reduce((total, cartOrder) => {
+    return total + cartOrder.price * cartOrder.quantyCoffe
   }, 0)
 
   function addCoffeeToCart(coffee: OrdersCartProps) {
     const checkIfTheCoffeeExists = cartOrders.findIndex(
-      (cartOrders) => cartOrders.id === cartOrders.id,
+      (cartOrder) => cartOrder.id === coffee.id,
     )
 
     const newCart = produce(cartOrders, (draft) => {
       if (checkIfTheCoffeeExists < 0) {
         draft.push(coffee)
       } else {
-        draft[checkIfTheCoffeeExists].quantity += coffee.quantity
+        draft[checkIfTheCoffeeExists].quantyCoffe += coffee.quantyCoffe
       }
     })
 
@@ -60,28 +60,28 @@ export function CoffeeCartContextProvider({
   }
 
   function completeCurrentOrder(
-    cartOrdersId: number,
+    cartOrderId: number,
     type: 'increase' | 'decrease',
   ) {
     const newCart = produce(cartOrders, (draft) => {
       const coffeeExistsInCart = cartOrders.findIndex(
-        (cartOrder) => cartOrder.id === cartOrdersId,
+        (cartOrder) => cartOrder.id === cartOrderId,
       )
 
       if (coffeeExistsInCart >= 0) {
         const order = draft[coffeeExistsInCart]
-        draft[coffeeExistsInCart].quantity =
-          type === 'increase' ? order.quantity + 1 : order.quantity - 1
+        draft[coffeeExistsInCart].quantyCoffe =
+          type === 'increase' ? order.quantyCoffe + 1 : order.quantyCoffe - 1
       }
     })
 
     setCartOrders(newCart)
   }
 
-  function removeCoffeeFromCart(cartOrdersId: number) {
+  function removeCoffeeFromCart(cartOrderId: number) {
     const newCart = produce(cartOrders, (draft) => {
       const coffeeExistsInCart = cartOrders.findIndex(
-        (cartOrders) => cartOrders.id === cartOrdersId,
+        (cartOrder) => cartOrder.id === cartOrderId,
       )
       if (coffeeExistsInCart >= 0) {
         draft.splice(coffeeExistsInCart, 1)
@@ -106,7 +106,7 @@ export function CoffeeCartContextProvider({
       value={{
         cartOrders,
         cartQuantity,
-        totalPrice,
+        cartOrdersTotal,
         addCoffeeToCart,
         completeCurrentOrder,
         removeCoffeeFromCart,

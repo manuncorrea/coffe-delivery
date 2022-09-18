@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContextProps } from '../../context/CoffeeCartContextProvider'
 import { CardContainer, CartContainer, QuantityinCart } from './styles'
 
 export interface CoffeCardProps {
@@ -16,14 +17,23 @@ interface CoffeProps {
 }
 
 export function Card({ coffee }: CoffeProps) {
+  const { addCoffeeToCart } = useContext(CartContextProps)
   const [quantyCoffe, setQuantyCoffe] = useState(1)
 
-  function hanfleIncrementQuantyCoffe() {
+  function hanfleIncrementquantity() {
     setQuantyCoffe((state) => state + 1)
   }
 
-  function handleDecrementQuantyCoffe() {
+  function handleDecrementquantity() {
     setQuantyCoffe((state) => state - 1)
+  }
+
+  function handleAddCoffeCart() {
+    const coffeeToAdd = {
+      ...coffee,
+      quantyCoffe,
+    }
+    addCoffeeToCart(coffeeToAdd)
   }
   return (
     <CardContainer>
@@ -43,19 +53,19 @@ export function Card({ coffee }: CoffeProps) {
         </div>
 
         <QuantityinCart>
-          <div className="quantity-in-cart">
+          <div className="quantyCoffe-in-cart">
             <button
-              onClick={handleDecrementQuantyCoffe}
+              onClick={handleDecrementquantity}
               disabled={quantyCoffe <= 1}
             >
               <Minus size={14} />
             </button>{' '}
             {quantyCoffe}{' '}
-            <button onClick={hanfleIncrementQuantyCoffe}>
+            <button onClick={hanfleIncrementquantity}>
               <Plus size={14} />
             </button>
           </div>
-          <button className="shopping-cart">
+          <button onClick={handleAddCoffeCart} className="shopping-cart">
             <ShoppingCartSimple weight="fill" size={14} />
           </button>
         </QuantityinCart>
