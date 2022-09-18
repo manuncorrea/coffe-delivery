@@ -20,7 +20,7 @@ export function Card({ coffee }: CoffeProps) {
   const { addCoffeeToCart } = useContext(CartContextProps)
   const [quantyCoffe, setQuantyCoffe] = useState(1)
 
-  function hanfleIncrementquantity() {
+  function handleIncrementquantity() {
     setQuantyCoffe((state) => state + 1)
   }
 
@@ -61,7 +61,7 @@ export function Card({ coffee }: CoffeProps) {
               <Minus size={14} />
             </button>{' '}
             {quantyCoffe}{' '}
-            <button onClick={hanfleIncrementquantity}>
+            <button onClick={handleIncrementquantity}>
               <Plus size={14} />
             </button>
           </div>
