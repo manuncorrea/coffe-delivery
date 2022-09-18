@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { CardContainer, CartContainer, QuantityinCart } from './styles'
 
 export interface CoffeCardProps {
+  id: number
   photo: string
   categories: string[]
   name: string
@@ -10,13 +11,11 @@ export interface CoffeCardProps {
   price: number
 }
 
-export function Card({
-  photo,
-  categories,
-  name,
-  description,
-  price,
-}: CoffeCardProps) {
+interface CoffeProps {
+  coffee: CoffeCardProps
+}
+
+export function Card({ coffee }: CoffeProps) {
   const [quantyCoffe, setQuantyCoffe] = useState(1)
 
   function hanfleIncrementQuantyCoffe() {
@@ -28,19 +27,19 @@ export function Card({
   }
   return (
     <CardContainer>
-      <img src={photo} alt="" />
+      <img src={coffee.photo} alt="" />
       <div className="category">
-        {categories.map((categorie) => (
-          <p key={name.length * Math.random()}>{categorie}</p>
+        {coffee.categories.map((categorie) => (
+          <p key={`${coffee.id}${categorie}`}>{categorie}</p>
         ))}
       </div>
-      <h2>{name}</h2>
-      <span className="text-card">{description}</span>
+      <h2>{coffee.name}</h2>
+      <span className="text-card">{coffee.description}</span>
 
       <CartContainer>
         <div>
           <span className="real">R$</span>
-          <span>{price}</span>
+          <span>{coffee.price}</span>
         </div>
 
         <QuantityinCart>

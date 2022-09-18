@@ -61,17 +61,8 @@ export function Home() {
       <SectionCoffe className="content">
         <span>Nossos cafés</span>
         <div>
-          {coffes.map((coffe) => {
-            return (
-              <Card
-                key={coffe.name}
-                photo={coffe.photo}
-                categories={coffe.categories}
-                name={coffe.name}
-                description={coffe.description}
-                price={coffe.price}
-              />
-            )
+          {coffes.map((item) => {
+            return <Card key={item.id} coffee={item} />
           })}
         </div>
       </SectionCoffe>

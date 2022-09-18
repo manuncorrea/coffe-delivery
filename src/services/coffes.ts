@@ -24,6 +24,7 @@ export enum CategoriesTypes {
 
 export const coffes = [
   {
+    id: 1,
     photo: coffeeTradicional,
     categories: [CategoriesTypes.tradicional],
     name: 'Expresso Tradicional',
@@ -31,6 +32,7 @@ export const coffes = [
     price: 9.9,
   },
   {
+    id: 2,
     photo: coffeeAmericano,
     categories: [CategoriesTypes.tradicional],
     name: 'Expresso Americano',
@@ -38,6 +40,7 @@ export const coffes = [
     price: 9.9,
   },
   {
+    id: 3,
     photo: coffeeCremoso,
     categories: [CategoriesTypes.tradicional],
     name: 'Expresso Cremoso',
@@ -45,6 +48,7 @@ export const coffes = [
     price: 9.9,
   },
   {
+    id: 4,
     photo: coffeeGelado,
     categories: [CategoriesTypes.tradicional, CategoriesTypes.gelado],
     name: 'Expresso Gelado',
@@ -53,6 +57,7 @@ export const coffes = [
   },
 
   {
+    id: 5,
     photo: coffeeComLeite,
     categories: [CategoriesTypes.tradicional, CategoriesTypes.comLeite],
     name: 'Café com Leite',
@@ -61,6 +66,7 @@ export const coffes = [
   },
 
   {
+    id: 6,
     photo: coffeeLatte,
     categories: [CategoriesTypes.tradicional, CategoriesTypes.comLeite],
     name: 'Latte',
@@ -70,6 +76,7 @@ export const coffes = [
   },
 
   {
+    id: 7,
     photo: coffeCapuccino,
     categories: [CategoriesTypes.tradicional, CategoriesTypes.comLeite],
     name: 'Capuccino',
@@ -78,6 +85,7 @@ export const coffes = [
     price: 9.9,
   },
   {
+    id: 8,
     photo: coffeeMucchiato,
     categories: [CategoriesTypes.tradicional, CategoriesTypes.comLeite],
     name: 'Macchiato',
@@ -87,6 +95,7 @@ export const coffes = [
   },
 
   {
+    id: 9,
     photo: coffeMocaccino,
     categories: [CategoriesTypes.tradicional, CategoriesTypes.comLeite],
     name: 'Mocaccino',
@@ -95,6 +104,7 @@ export const coffes = [
   },
 
   {
+    id: 10,
     photo: coffeeChocolateQuente,
     categories: [CategoriesTypes.especial, CategoriesTypes.comLeite],
     name: 'Chocolate Quente',
@@ -103,6 +113,7 @@ export const coffes = [
   },
 
   {
+    id: 11,
     photo: coffeeCubano,
     categories: [
       CategoriesTypes.especial,
@@ -116,6 +127,7 @@ export const coffes = [
   },
 
   {
+    id: 12,
     photo: coffeeHavaiano,
     categories: [CategoriesTypes.especial],
     name: 'Havaiano',
@@ -124,6 +136,7 @@ export const coffes = [
   },
 
   {
+    id: 13,
     photo: coffeeArabe,
     categories: [CategoriesTypes.especial],
     name: 'Árabe',
@@ -132,6 +145,7 @@ export const coffes = [
   },
 
   {
+    id: 14,
     photo: coffeeIrlandes,
     categories: [CategoriesTypes.alcoolico, CategoriesTypes.gelado],
     name: 'Irlandês',
