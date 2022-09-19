@@ -71,7 +71,7 @@ export function CoffeeCartContextProvider({
       if (coffeeExistsInCart >= 0) {
         const order = draft[coffeeExistsInCart]
         draft[coffeeExistsInCart].quantyCoffe =
-          type === 'increase' ? order.quantyCoffe + 1 : order.quantyCoffe - 1
+          type === 'decrease' ? order.quantyCoffe + 1 : order.quantyCoffe - 1
       }
     })
 
