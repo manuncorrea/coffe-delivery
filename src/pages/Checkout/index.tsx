@@ -1,20 +1,14 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money,
-} from 'phosphor-react'
+import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 import { useContext } from 'react'
 import { CartContextProps } from '../../context/CoffeeCartContextProvider'
 import { CheckoutCoffeCard } from './components/CheckoutCoffeCard'
+import { SelectedCoffee } from './components/CheckoutCoffeCard/SelectedCoffee'
+import { FormAddress } from './components/FormAddress'
 import {
   CheckoutContainer,
   CheckoutRequestsContainer,
   CheckoutSuccessContainer,
   HeaderPayment,
-  HeaderRequest,
-  InputContainer,
 } from './styles'
 
 export function Checkout() {
@@ -25,25 +19,7 @@ export function Checkout() {
         <h3>Complete seu pedido</h3>
 
         <div className="address">
-          <HeaderRequest>
-            <MapPinLine size={22} />
-            <div>
-              <h4>Endereço de Entrega</h4>
-              <span>Informe o endereço onde deseja receber seu pedido</span>
-            </div>
-          </HeaderRequest>
-
-          <input type="text" placeholder="CEP" />
-          <input type="text" placeholder="Rua" />
-          <InputContainer>
-            <input type="number" placeholder="Número" />
-            <input type="text" placeholder="Complemento" />
-          </InputContainer>
-          <InputContainer>
-            <input type="text" placeholder="Bairro" />
-            <input type="text" placeholder="Cidade" />
-            <input type="text" placeholder="UF" />
-          </InputContainer>
+          <FormAddress />
         </div>
 
         <div className="payment">
@@ -80,6 +56,8 @@ export function Checkout() {
           {cartOrders.map((item) => (
             <CheckoutCoffeCard key={item.id} coffee={item} />
           ))}
+
+          <SelectedCoffee />
         </div>
       </CheckoutSuccessContainer>
     </CheckoutContainer>

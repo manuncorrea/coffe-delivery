@@ -14,7 +14,9 @@ interface CheckoutCoffeCardProps {
 }
 
 export function CheckoutCoffeCard({ coffee }: CheckoutCoffeCardProps) {
-  const { completeCurrentOrder, removeCoffeeFromCart } = useContext(CartContextProps)
+  const { completeCurrentOrder, removeCoffeeFromCart } =
+    useContext(CartContextProps)
+
   function handleIncrementquantity() {
     completeCurrentOrder(coffee.id, 'increase')
   }
@@ -30,25 +32,27 @@ export function CheckoutCoffeCard({ coffee }: CheckoutCoffeCardProps) {
   const coffeeTotal = coffee.price * coffee.quantyCoffe
   const fotmatCoffeeTotal = formatMoney(coffeeTotal)
   return (
-    <Container>
-      <div>
-        <img src={coffee.photo} alt="" />
-        <div className="sub">
-          <h3>{coffee.name}</h3>
-          <CheckoutActionsContainer>
-            <QuantityCoffee
-              quantyCoffe={coffee.quantyCoffe}
-              onIncrease={handleIncrementquantity}
-              onDecrease={handleDecrementquantity}
-            />
-            <RomeveCoffee type="button" onClick={handleRomeveCoffee}>
-              <Trash size={16} />
-              REMOVER
-            </RomeveCoffee>
-          </CheckoutActionsContainer>
+    <>
+      <Container>
+        <div>
+          <img src={coffee.photo} alt="" />
+          <div className="sub">
+            <h3>{coffee.name}</h3>
+            <CheckoutActionsContainer>
+              <QuantityCoffee
+                quantyCoffe={coffee.quantyCoffe}
+                onIncrease={handleIncrementquantity}
+                onDecrease={handleDecrementquantity}
+              />
+              <RomeveCoffee type="button" onClick={handleRomeveCoffee}>
+                <Trash size={16} />
+                REMOVER
+              </RomeveCoffee>
+            </CheckoutActionsContainer>
+          </div>
         </div>
-      </div>
-      <p>R$ {fotmatCoffeeTotal}</p>
-    </Container>
+        <p>R$ {fotmatCoffeeTotal}</p>
+      </Container>
+    </>
   )
 }
