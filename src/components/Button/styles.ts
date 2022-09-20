@@ -1,23 +1,25 @@
 import styled from 'styled-components'
 
 export const ButtonContainer = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  padding: 0.75rem 2.8rem;
+  line-height: 1.3rem;
 
-  font-size: 0.875rem;
   font-weight: 700;
 
-  width: 23rem;
-  height: 2.875rem;
-  padding: 0.75rem 2.8rem;
+  background: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.white};
 
-  gap: 0.5rem;
-
-  border: none;
   border-radius: 6px;
+  border: none;
+  margin-top: 0.7rem;
+  text-transform: uppercase;
+  transition: 0.4s;
 
-  background: ${(props) => props.theme.yellow};
-  color: ${(props) => props.theme.white};
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  &:not(:disabled):hover {
+    background: ${({ theme }) => theme['yellow-dark']};
+  }
 `

@@ -1,14 +1,8 @@
 import { InputHTMLAttributes } from 'react'
-import { InputsRequestContainer } from './styled'
+import { InputContainer } from './styled'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  placeholder: string
-}
+type InputProps = InputHTMLAttributes<HTMLInputElement>
 
-export function Input(props: InputProps) {
-  return (
-    <InputsRequestContainer>
-      <input />
-    </InputsRequestContainer>
-  )
+export function Input({ ...rest }: InputProps) {
+  return <InputContainer {...rest} />
 }

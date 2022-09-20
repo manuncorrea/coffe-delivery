@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const CheckoutCoffeeCardContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -15,19 +15,18 @@ export const Container = styled.div`
     align-items: center;
     gap: 1.25rem;
 
+    h3 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+
+      color: ${(props) => props.theme['base-subtitle']};
+    }
+
     img {
       width: 4rem;
       height: 4rem;
-    }
-    .sub {
-      h3 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        font-style: normal;
-        font-size: 1rem;
-
-        color: ${(props) => props.theme['base-subtitle']};
-      }
     }
   }
 
@@ -36,22 +35,20 @@ export const Container = styled.div`
     font-weight: 700;
   }
 `
-
-export const CheckoutActionsContainer = styled.div`
+export const ActionsContainer = styled.div`
   display: flex;
   align-items: center;
 
   height: 2rem;
   gap: 0.5rem;
-  margin-top: 0.05rem;
+  margin-top: 0.75rem;
 
   > div {
     max-width: 4.5rem;
     height: 100%;
   }
 `
-
-export const RomeveCoffee = styled.button`
+export const RemoverButton = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -82,4 +79,3 @@ export const RomeveCoffee = styled.button`
     color: ${(props) => props.theme.purple};
   }
 `
-
