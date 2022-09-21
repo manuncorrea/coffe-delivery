@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { CartContextProps } from '../../../../context/CoffeeCartContextProvider'
 import { CheckoutCoffeeCard } from '../CheckoutCoffeeCard'
 import { CheckoutConfirmationSection } from './CheckoutConfirmationSection'
 import {
@@ -6,14 +8,15 @@ import {
 } from './styles'
 
 export function CheckoutSelectedCoffee() {
+  const { cartOrders } = useContext(CartContextProps)
   return (
     <CheckoutSelectedCoffeeContainer>
       <h3>Cafés selecionados</h3>
 
       <SelectedCoffeContainer>
-        <CheckoutCoffeeCard />
-        <CheckoutCoffeeCard />
-        <CheckoutCoffeeCard />
+        {cartOrders.map((coffees) => (
+          <CheckoutCoffeeCard key={coffees.id} coffee={coffees} />
+        ))}
 
         <CheckoutConfirmationSection />
       </SelectedCoffeContainer>

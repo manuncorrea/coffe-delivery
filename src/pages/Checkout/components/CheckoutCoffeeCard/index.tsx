@@ -1,22 +1,54 @@
 import { Trash } from 'phosphor-react'
+import { useContext } from 'react'
 import { QuantityCoffee } from '../../../../components/QuantityInputCoffee'
-import logoCoffee from './../../../../assets/coffe-chocolate-quente.png'
+import {
+  CartContextProps,
+  OrdersCartProps,
+} from '../../../../context/CoffeeCartContextProvider'
+import { formatMoney } from '../../../../utils/formatMoney'
+
 import {
   ActionsContainer,
   CheckoutCoffeeCardContainer,
-  RemoverButton
+  RemoverButton,
 } from './styles'
 
-export function CheckoutCoffeeCard() {
+interface CheckoutCoffeeCardProps {
+  coffee: OrdersCartProps
+}
+
+export function CheckoutCoffeeCard({ coffee }: CheckoutCoffeeCardProps) {
+  const { completeCurrentOrder, removeCoffeeFromCart } =
+    useContext(CartContextProps)
+
+  function handleIncrementquantity() {
+    completeCurrentOrder(coffee.id, 'increase')
+  }
+
+  function handleDecrementquantity() {
+    completeCurrentOrder(coffee.id, 'decrease')
+  }
+
+  function handleRomeveCoffee() {
+    removeCoffeeFromCart(coffee.id)
+  }
+
+  const coffeeTotal = coffee.price * coffee.quantyCoffe
+  const fotmatCoffeeTotal = formatMoney(coffeeTotal)
+
   return (
     <CheckoutCoffeeCardContainer>
       <div>
-        <img src={logoCoffee} alt="" />
+        <img src={coffee.photo} alt="" />
         <div>
-          <h3>Coffé Tradicional</h3>
+          <h3>{coffee.name}</h3>
           <ActionsContainer>
-            <QuantityCoffee quantyCoffe={1} />
-            <RemoverButton>
+            <QuantityCoffee
+              quantyCoffe={coffee.quantyCoffe}
+              onIncrease={handleIncrementquantity}
+              onDecrease={handleDecrementquantity}
+            />
+            <RemoverButton type="button" onClick={handleRomeveCoffee}>
               <Trash size={16} />
               Remover
             </RemoverButton>
@@ -24,7 +56,7 @@ export function CheckoutCoffeeCard() {
         </div>
       </div>
 
-      <p>R$9,99</p>
+      <p>R$ {fotmatCoffeeTotal}</p>
     </CheckoutCoffeeCardContainer>
   )
 }

@@ -1,25 +1,40 @@
+import { useContext } from 'react'
 import { Button } from '../../../../components/Button'
+import { CartContextProps } from '../../../../context/CoffeeCartContextProvider'
+import { formatMoney } from '../../../../utils/formatMoney'
 import { CheckoutConfirmationSectionContainer } from './styles'
 
+const deliveryFee = 3.5
+
 export function CheckoutConfirmationSection() {
+  const { cartOrdersTotal, cartQuantity } = useContext(CartContextProps)
+  const cartTotal = deliveryFee + cartOrdersTotal
+  const formattedOrdersTotal = formatMoney(cartOrdersTotal)
+  const formattedCartTotal = formatMoney(cartTotal)
+  const formattedDeliveryFee = formatMoney(deliveryFee)
+
   return (
     <CheckoutConfirmationSectionContainer>
       <div>
         <span>Total de itens</span>
-        <span>R$ 9,90</span>
+        <span>R$ {formattedOrdersTotal}</span>
       </div>
 
       <div>
         <span>Entrega</span>
-        <span>R$ 3,50</span>
+        <span>R$ {formattedDeliveryFee}</span>
       </div>
 
       <div>
         <h2>Total</h2>
-        <h2>R$ 12,40</h2>
+        <h2>R$ {formattedCartTotal}</h2>
       </div>
 
-      <Button type="submit" text="CONFIRMAR PEDIDO" />
+      <Button
+        type="submit"
+        text="CONFIRMAR PEDIDO"
+        disabled={cartQuantity <= 0}
+      />
     </CheckoutConfirmationSectionContainer>
   )
 }

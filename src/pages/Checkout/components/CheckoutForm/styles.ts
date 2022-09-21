@@ -57,24 +57,24 @@ export const HeaderPayment = styled(HeaderContainer)`
 `
 
 export const CheckoutAddressFormContainer = styled.div`
-  display: flex;
-  flex-direction: row;
   width: 100%;
+  display: grid;
+  grid-template-columns: 12.5rem 17.25rem 3.75rem;
+  column-gap: 0.75rem;
+  row-gap: 1rem;
+  grid-auto-flow: dense;
 
-  & input:not(:first-child) {
-    margin-left: 1rem;
+  .cep {
+    grid-column: span 3;
+    max-width: 12.5rem;
   }
 
-  & input:first-child {
-    width: 25%;
+  .street {
+    grid-column: span 3;
   }
 
-  & input:nth-child(2) {
-    width: 75%;
-  }
-
-  & input:nth-child(3) {
-    width: 20%;
+  .complement {
+    grid-column: span 2;
   }
 `
 

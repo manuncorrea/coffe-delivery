@@ -11,7 +11,6 @@ export const CheckoutBaseCard = styled.div`
   width: 100%;
   padding: 2.5rem;
   border-radius: 6px;
-  padding: 2.5rem;
 
   background: ${(props) => props.theme['base-card']};
 `

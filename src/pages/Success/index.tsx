@@ -1,5 +1,12 @@
+import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import imagemSuccess from '../../assets/illustration-success.png'
-import { SuccessContainer, SucessContent } from './styles'
+import {
+  IconContainer,
+  OrderContainer,
+  OrderContent,
+  SuccessContainer,
+  SucessContent
+} from './styles'
 
 export function Success() {
   return (
@@ -10,8 +17,33 @@ export function Success() {
       </div>
 
       <SucessContent>
-        <div>aaaa</div>
+        <OrderContainer>
+          <OrderContent>
+            <section>
+              <IconContainer variant="purple">
+                <MapPin weight="fill" size={16} />
+              </IconContainer>
+              <span>
+                Entrega em Rua João Daniel Martinelli, 102 Farrapos - Porto
+                Alegre, RS
+              </span>
+            </section>
 
+            <section>
+              <IconContainer variant="yellow">
+                <Timer weight="fill" size={16} />
+              </IconContainer>
+              <span>Previsão de entrega 20 min - 30 min</span>
+            </section>
+
+            <section>
+              <IconContainer variant="yellow-dark">
+                <CurrencyDollar weight="fill" size={16} />
+              </IconContainer>
+              <span>Pagamento na entrega Cartão de Crédito</span>
+            </section>
+          </OrderContent>
+        </OrderContainer>
         <img src={imagemSuccess} alt="" />
       </SucessContent>
     </SuccessContainer>
