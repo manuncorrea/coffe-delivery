@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContext } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -8,7 +9,13 @@ import { CheckoutForm } from './components/CheckoutForm'
 import { CheckoutSelectedCoffee } from './components/CheckoutSelectedCoffee'
 import { CheckoutFormContainer } from './styles'
 
-const validateOrderFormSchema = zod.object({
+enum PaymentMethodsProps {
+  credit = 'credit',
+  debit = 'debit',
+  money = 'money',
+}
+
+const confirmOrderFormValidationSchema = zod.object({
   cep: zod.string().min(1, 'Informe o CEP'),
   street: zod.string().min(1, 'Informe o Rua'),
   number: zod.string().min(1, 'Informe o Número'),
@@ -16,24 +23,31 @@ const validateOrderFormSchema = zod.object({
   district: zod.string().min(1, 'Informe o Bairro'),
   city: zod.string().min(1, 'Informe a Cidade'),
   uf: zod.string().min(1, 'Informe a UF'),
+  paymentMethod: zod.nativeEnum(PaymentMethodsProps, {
+    errorMap: () => {
+      return { message: 'Informe o método de pagamento' }
+    },
+  }),
 })
 
-export type OrderDataType = zod.infer<typeof validateOrderFormSchema>
+export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>
 
-type ValidateOrderFormData = OrderDataType
+type ConfirmOrderFormData = OrderData
 
 export function Checkout() {
+  const confirmOrderForm = useForm<ConfirmOrderFormData>({
+    resolver: zodResolver(confirmOrderFormValidationSchema),
+    defaultValues: {
+      paymentMethod: undefined,
+    },
+  })
+
+  const { handleSubmit } = confirmOrderForm
+
   const navigate = useNavigate()
   const { cleanCart } = useContext(CartContextProps)
 
-  const validateOrderForm = useForm<ValidateOrderFormData>({
-    resolver: zodResolver(validateOrderFormSchema),
-  })
-
-  const { handleSubmit } = validateOrderForm
-
-  function handleConfirmOrder(data: ValidateOrderFormData) {
-    console.log(data)
+  function handleConfirmOrder(data: ConfirmOrderFormData) {
     navigate('/success', {
       state: data,
     })
@@ -41,7 +55,7 @@ export function Checkout() {
   }
 
   return (
-    <FormProvider {...validateOrderForm}>
+    <FormProvider {...confirmOrderForm}>
       <CheckoutFormContainer
         className="content"
         onSubmit={handleSubmit(handleConfirmOrder)}

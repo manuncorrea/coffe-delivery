@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 interface IconProps {
   variant: 'purple' | 'yellow' | 'yellow-dark'
@@ -26,68 +26,39 @@ export const SucessContent = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
 `
-
 export const OrderContainer = styled.div`
+  padding: 2.5rem;
+  border-radius: 6px 36px 6px 36px;
+  position: relative;
+  background: ${(props) => props.theme.white};
+  min-width: 32rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 0.5rem;
 
-  width: 32.875rem;
-  height: 16.875rem;
-
-  border: double 1px transparent;
-  border-image-slice: 1;
-  border-radius: 6px 36px;
-  background-image: linear-gradient(
-      ${(props) => props.theme.white},
-      ${(props) => props.theme.white}
-    ),
-    radial-gradient(circle at top left, #dbac2c, #8047f8);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-`
-
-export const OrderContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  padding: 3rem;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: 7px 37px 7px 37px;
+    background: linear-gradient(102.89deg, #dbac2c 2.61%, #8047f8 98.76%);
+  }
 
   section {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0;
-    gap: 0.75rem;
-
-    width: 22.125rem;
-    height: 2.625rem;
-
-    margin-bottom: 2rem;
-
+    gap: 0.5rem;
     span {
-      width: 310px;
-      height: 42px;
-
-      /* Text/Regular M */
-
-      font-family: 'Roboto';
+      width: 19.375rem;
+      height: 2.625rem;
       font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
+      font-size: 1rem;
       line-height: 130%;
-      /* or 21px */
-
-      /* Base/Text */
-
-      color: #574f4d;
     }
   }
 `
 
-export const IconContainer = styled.div<IconProps>`
+export const IconSvg = styled.div<IconProps>`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -95,14 +66,15 @@ export const IconContainer = styled.div<IconProps>`
   padding: 0.5rem;
   gap: 0.5rem;
 
-  width: 2rem;
-  height: 2rem;
+  width: 32px;
+  height: 32px;
 
   border-radius: 50%;
 
-  ${({ variant }) => css`
-    background: ${(props) => props.theme[`${variant}`]};
-  `}
-
   color: ${(props) => props.theme.white};
+  background: ${(props) => props.theme[props.variant]};
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 `

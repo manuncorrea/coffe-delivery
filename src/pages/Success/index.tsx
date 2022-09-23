@@ -1,14 +1,28 @@
-import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { MapPin, Timer } from 'phosphor-react'
+import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import imagemSuccess from '../../assets/illustration-success.png'
+import { OrderDataType } from '../Checkout'
 import {
-  IconContainer,
+  IconSvg,
   OrderContainer,
-  OrderContent,
   SuccessContainer,
-  SucessContent
+  SucessContent,
 } from './styles'
 
+interface SuccessProps {
+  state: OrderDataType
+}
+
 export function Success() {
+  const navigate = useNavigate()
+  const { state } = useLocation() as unknown as SuccessProps
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/')
+    }
+  }, [])
   return (
     <SuccessContainer className="content">
       <div>
@@ -18,31 +32,39 @@ export function Success() {
 
       <SucessContent>
         <OrderContainer>
-          <OrderContent>
-            <section>
-              <IconContainer variant="purple">
-                <MapPin weight="fill" size={16} />
-              </IconContainer>
-              <span>
-                Entrega em Rua João Daniel Martinelli, 102 Farrapos - Porto
-                Alegre, RS
-              </span>
-            </section>
+          <section>
+            <IconSvg variant="purple">
+              <MapPin weight="fill" size={16} />
+            </IconSvg>
+            <span>
+              Entrega em{' '}
+              <strong>
+                Rua {state.street}, {state.number}
+              </strong>{' '}
+              {state.district} - {state.city}, {state.uf}
+            </span>
+          </section>
 
-            <section>
-              <IconContainer variant="yellow">
-                <Timer weight="fill" size={16} />
-              </IconContainer>
-              <span>Previsão de entrega 20 min - 30 min</span>
-            </section>
+          <section>
+            <IconSvg variant="yellow-dark">
+              <Timer weight="fill" size={16} />
+            </IconSvg>
+            <span>
+              Previsão de entrega <br />
+              <strong>20 min - 30 min </strong>
+            </span>
+          </section>
 
-            <section>
-              <IconContainer variant="yellow-dark">
-                <CurrencyDollar weight="fill" size={16} />
-              </IconContainer>
-              <span>Pagamento na entrega Cartão de Crédito</span>
-            </section>
-          </OrderContent>
+          <section>
+            <IconSvg variant="yellow">
+              <Timer weight="fill" size={16} />
+            </IconSvg>
+            <span>
+              Pagamento na entrega
+              <br />
+              <strong>Cartão de Crédito</strong>
+            </span>
+          </section>
         </OrderContainer>
         <img src={imagemSuccess} alt="" />
       </SucessContent>

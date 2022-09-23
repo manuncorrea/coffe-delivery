@@ -80,6 +80,11 @@ export const CheckoutAddressFormContainer = styled.div`
 
 export const CheckoutPaymentOptionsContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
+
+  > p {
+    grid-column: span 3;
+    color: ${(props) => props.theme['base-error']};
+  }
 `
