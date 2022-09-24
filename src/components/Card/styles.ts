@@ -88,47 +88,46 @@ export const CartContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px;
-  gap: 29px;
+
   position: absolute;
-  height: 38px;
-  left: 24px;
-  right: 24px;
-  bottom: 20px;
+  gap: 0.75rem;
 
-  div {
-    .real {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
-      font-size: 0.875rem;
-      color: ${(props) => props.theme['base-text']};
-      left: 18.2px;
-      margin-right: 0.2rem;
-      line-height: 31px;
-      letter-spacing: 0em;
-      text-align: right;
-    }
+  height: 2.375rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.25rem;
 
-    span {
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.138rem;
+
+    strong {
+      display: flex;
+      align-items: center;
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 800;
       font-size: 1.5rem;
-      line-height: 31px;
-      letter-spacing: 0em;
+      line-height: 1.95rem;
       text-align: right;
     }
   }
 `
+
 export const QuantityinCart = styled.div`
-  display: flex;
   width: 7.5rem;
-  gap: 0.5rem;
 
   div {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 4.5rem;
     height: 2.375rem;
     padding: 0.5rem;
-    background: ${(props) => props.theme['base-button']};
     border-radius: 6px;
     gap: 0.25rem;
 

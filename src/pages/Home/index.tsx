@@ -58,6 +58,7 @@ export function Home() {
           <img src={coffeHome} alt="" />
         </Container>
       </BannerCoffe>
+
       <SectionCoffe className="content">
         <span>Nossos cafés</span>
         <div>

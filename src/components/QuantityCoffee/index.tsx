@@ -14,15 +14,13 @@ export function QuantityCoffee({
 }: QuantityCoffeeProps) {
   return (
     <QuantityinCart>
-      <div className="quantyCoffe-in-cart">
-        <button onClick={onIncrease} disabled={quantyCoffe <= 1}>
-          <Minus size={14} />
-        </button>{' '}
-        {quantyCoffe}{' '}
-        <button onClick={onDecrease}>
-          <Plus size={14} />
-        </button>
-      </div>
+      <button onClick={onIncrease} disabled={quantyCoffe <= 1}>
+        <Minus size={14} />
+      </button>{' '}
+      {quantyCoffe}{' '}
+      <button onClick={onDecrease}>
+        <Plus size={14} />
+      </button>
     </QuantityinCart>
   )
 }

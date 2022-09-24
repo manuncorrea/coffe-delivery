@@ -1,6 +1,8 @@
-import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
+import { ShoppingCartSimple } from 'phosphor-react'
 import { useContext, useState } from 'react'
 import { CartContextProps } from '../../context/CoffeeCartContextProvider'
+import { formatMoney } from '../../utils/formatMoney'
+import { QuantityCoffee } from '../QuantityCoffee'
 import { CardContainer, CartContainer, QuantityinCart } from './styles'
 
 export interface CoffeCardProps {
@@ -21,11 +23,11 @@ export function Card({ coffee }: CoffeProps) {
   const [quantyCoffe, setQuantyCoffe] = useState(1)
 
   function handleIncrementquantity() {
-    setQuantyCoffe((state) => state + 1)
+    setQuantyCoffe((state) => state - 1)
   }
 
   function handleDecrementquantity() {
-    setQuantyCoffe((state) => state - 1)
+    setQuantyCoffe((state) => state + 1)
   }
 
   function handleAddCoffeCart() {
@@ -35,6 +37,8 @@ export function Card({ coffee }: CoffeProps) {
     }
     addCoffeeToCart(coffeeToAdd)
   }
+
+  const coffePrice = formatMoney(coffee.price)
   return (
     <CardContainer>
       <img src={coffee.photo} alt="" />
@@ -48,23 +52,15 @@ export function Card({ coffee }: CoffeProps) {
 
       <CartContainer>
         <div>
-          <span className="real">R$</span>
-          <span>{coffee.price}</span>
+          R$<strong>{coffePrice}</strong>
         </div>
 
         <QuantityinCart>
-          <div className="quantyCoffe-in-cart">
-            <button
-              onClick={handleDecrementquantity}
-              disabled={quantyCoffe <= 1}
-            >
-              <Minus size={14} />
-            </button>{' '}
-            {quantyCoffe}{' '}
-            <button onClick={handleIncrementquantity}>
-              <Plus size={14} />
-            </button>
-          </div>
+          <QuantityCoffee
+            onDecrease={handleDecrementquantity}
+            onIncrease={handleIncrementquantity}
+            quantyCoffe={quantyCoffe}
+          />
           <button onClick={handleAddCoffeCart} className="shopping-cart">
             <ShoppingCartSimple weight="fill" size={14} />
           </button>

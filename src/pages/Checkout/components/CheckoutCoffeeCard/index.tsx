@@ -1,6 +1,6 @@
 import { Trash } from 'phosphor-react'
 import { useContext } from 'react'
-import { QuantityCoffee } from '../../../../components/QuantityInputCoffee'
+import { QuantityCoffee } from '../../../../components/QuantityCoffee'
 import {
   CartContextProps,
   OrdersCartProps,

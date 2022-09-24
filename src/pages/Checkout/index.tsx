@@ -16,7 +16,7 @@ enum PaymentMethodsProps {
 }
 
 const confirmOrderFormValidationSchema = zod.object({
-  cep: zod.string().min(1, 'Informe o CEP'),
+  cep: zod.string().min(7, 'Informe o CEP'),
   street: zod.string().min(1, 'Informe o Rua'),
   number: zod.string().min(1, 'Informe o Número'),
   complement: zod.string(),
@@ -30,9 +30,9 @@ const confirmOrderFormValidationSchema = zod.object({
   }),
 })
 
-export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>
+export type OrderDataType = zod.infer<typeof confirmOrderFormValidationSchema>
 
-type ConfirmOrderFormData = OrderData
+type ConfirmOrderFormData = OrderDataType
 
 export function Checkout() {
   const confirmOrderForm = useForm<ConfirmOrderFormData>({

@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import imagemSuccess from '../../assets/illustration-success.png'
 import { OrderDataType } from '../Checkout'
+import { paymentMethods } from '../Checkout/components/CheckoutForm/CheckoutPaymentOptions'
 import {
   IconSvg,
   OrderContainer,
@@ -62,7 +63,7 @@ export function Success() {
             <span>
               Pagamento na entrega
               <br />
-              <strong>Cartão de Crédito</strong>
+              <strong>{paymentMethods[state.paymentMethod].label}</strong>
             </span>
           </section>
         </OrderContainer>
